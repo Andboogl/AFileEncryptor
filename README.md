@@ -1,4 +1,4 @@
-# AFileEncryptor 0.0.0
+# AFileEncryptor 0.1.0
 Програма для шифрування  папок у файл
 
 # Що нового
@@ -7,4 +7,8 @@
 - Вікно програми без рамки
 
 # Демонстрація ПЗ
-<img src="app.png">
+Українська версія
+<img src="photos/app_ua.png">
+
+Англійська версія
+<img src="photos/app_en.png">
