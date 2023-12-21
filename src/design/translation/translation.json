@@ -1,0 +1,35 @@
+{
+    "en": {
+        "to_encrypt": "Folder (to encrypt)",
+        "to_decrypt": "File (to decrypt)",
+        "where_result": "Where to encrypt and decrypt",
+        "chose": "Select...",
+        "set_default": "Set default",
+        "encrypt": "Encrypt",
+        "decrypt": "Decrypt",
+        "lang_menu": "Language",
+        "empty_err": "Enter all fields",
+        "encrypted_version": "Encrypted version created on the path",
+        "encryption_error_title": "A mistake when encrypting a folder",
+        "encryption_error_text": "An error occurred while encrypting a folder",
+        "decrypted_text": "The file is decrypted by the path",
+        "decryption_error": "File could not be decrypted"
+    },
+
+    "ua": {
+        "to_encrypt": "Папка (для шифрування)",
+        "to_decrypt": "Файл (для розшифрування)",
+        "where_result": "Куди шифрувати та розшифровувати",
+        "chose": "Вибрати...",
+        "set_default": "Встановити за замовчюванням",
+        "encrypt": "Зашифрувати",
+        "decrypt": "Розшифрувати",
+        "lang_menu": "Мова",
+        "empty_err": "Вкажіть всі поля",
+        "encrypted_version": "Зашифрована версія створенна за шляхом",
+        "encryption_error_title": "Помилка при шифруванні папки",
+        "encryption_error_text": "Виникла помилка при шифруванні папки",
+        "decrypted_text": "Файл розшифрований за шляхом",
+        "decryption_error": "Не вдалося розшифрувати файл"
+    }
+}
