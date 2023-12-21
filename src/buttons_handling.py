@@ -27,7 +27,7 @@ class ButtonsHandler:
             if user_folder.strip():
                 try:
                     encrypted = pickle.dumps(modules.encrypt_folder(user_folder))
-                    creation_path = os.path.join(user_folder, 'encrypted.pc')\
+                    creation_path = os.path.join(os.path.dirname(user_folder), 'encrypted.pc')\
                         if not where_to_make_result\
                         else os.path.join(where_to_make_result, 'encrypted.pc')
 
@@ -51,6 +51,44 @@ class ButtonsHandler:
 
         except Exception as error:
             self.main_window.language_error(error)
+
+    def decrypt_file(self):
+        """Decrypt file"""
+        try:
+            data = modules.load_translation()
+            en = data['en']
+            ua = data['ua']
+            lang = self.settings.get_language()
+
+            file = self.main_window.design.to_decrypt.text()
+            where_to_decrypt = self.main_window.design.where_result.text()
+
+            if file.strip():
+                try:
+                    with open(file, 'rb') as f:
+                        data = pickle.load(f)
+
+                    if not where_to_decrypt:
+                        where_to_decrypt = os.path.dirname(file)
+
+                    decrypted_path = modules.decrypt(data, cr=where_to_decrypt)
+
+                    text = en['decrypted_text'] if lang == 'en' else ua['decrypted_text']
+                    self.main_window.message.normal(f'{text} {decrypted_path}', f'{text} {decrypted_path}')
+
+                except Exception as error:
+                    logger.error('Error while decrypting file')
+                    logger.error(error)
+                    text = en['decryption_error'] if lang == 'en' else ua['decryption_error']
+                    self.main_window.message.error(text, text, error)
+
+            else:
+                text = en['empty_err'] if self.settings.get_language() == 'en' else ua['empty_err']
+                self.main_window.message.normal(text, text)
+
+        except Exception as error:
+            self.main_window.language_error(error)
+
 
     def chose_decrypt_file_path(self):
         """Chose decrypt file path"""

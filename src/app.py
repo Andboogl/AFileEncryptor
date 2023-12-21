@@ -40,43 +40,6 @@ class MainWindow(QMainWindow):
         self.buttons_handling()
         logger.success('Application started its work!')
 
-    def decrypt_file(self):
-        """Decrypt file"""
-        try:
-            data = modules.load_translation()
-            en = data['en']
-            ua = data['ua']
-            lang = self.settings.get_language()
-
-            file = self.design.to_decrypt.text()
-            where_to_decrypt = self.design.where_result.text()
-
-            if file.strip():
-                try:
-                    with open(file, 'rb') as f:
-                        data = pickle.load(f)
-
-                    if not where_to_decrypt:
-                        where_to_decrypt = os.path.dirname(file)
-
-                    decrypted_path = modules.decrypt(data, cr=where_to_decrypt)
-
-                    text = en['decrypted_text'] if lang == 'en' else ua['decrypted_text']
-                    self.message.normal(f'{text} {decrypted_path}', f'{text} {decrypted_path}')
-
-                except Exception as error:
-                    logger.error('Error while decrypting file')
-                    logger.error(error)
-                    text = en['decryption_error'] if lang == 'en' else ua['decryption_error']
-                    self.message.error(text, text, error)
-
-            else:
-                text = en['empty_err'] if self.settings.get_language() == 'en' else ua['empty_err']
-                self.message.normal(text, text)
-
-        except Exception as error:
-            self.language_error(error)
-
     def language_error(self, error):
         """Loading language error"""
         logger.error(f'Error while loading application language')
@@ -103,7 +66,7 @@ class MainWindow(QMainWindow):
         self.design.chose_to_decrypt.clicked.connect(self.buttons_handler.chose_decrypt_file_path)
         self.design.encrypt.clicked.connect(self.buttons_handler.encrypt_button)
         self.design.set_default.clicked.connect(lambda: self.design.where_result.setText(''))
-        self.design.decrypt.clicked.connect(self.decrypt_file)
+        self.design.decrypt.clicked.connect(self.buttons_handler.decrypt_file)
 
     # Moving frameless window
     # --------------------------

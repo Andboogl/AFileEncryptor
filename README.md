@@ -1,4 +1,4 @@
-# AFileEncryptor
+# AFileEncryptor 0.0.0
 Програма для шифрування  папок у файл
 
 # Що нового
